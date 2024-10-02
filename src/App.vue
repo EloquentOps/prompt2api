@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-
+    <Header />
   
   <div class="container" v-if="openai_apikey">
 
@@ -47,6 +47,7 @@
     <button @click="saveOpenAIKey">Save</button>
   </div>
 
+  <Footer />
 </div>
 </template>
 
@@ -54,13 +55,17 @@
 
 
 <script>
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
 import axios from 'axios'
 import Editor from '@guolao/vue-monaco-editor'
 
 export default {
   name: 'App',
   components: {
-    Editor
+    Editor,
+    Header,
+    Footer
   },
   mounted() {
     this.openai_apikey = localStorage.getItem('prompt_api:openai_apikey') || ''
@@ -77,7 +82,7 @@ export default {
       editor: null,
       base: import.meta.env.VITE_APP_WORKER_APP_BASE_URL,
       temp_apikey: '',
-      openai_apikey: localStorage.getItem('prompt_api:openai_apikey')
+      openai_apikey: ''
     }
   },
   methods: {
