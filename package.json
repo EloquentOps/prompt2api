@@ -1,0 +1,22 @@
+{
+  "name": "@eloquentops/prompt-api",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "worker": "cd worker && npm start",
+    "worker_deploy": "cd worker && npm run deploy",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@guolao/vue-monaco-editor": "^1.5.4",
+    "axios": "^1.7.7",
+    "short-unique-id": "^5.2.0",
+    "vue": "^3.4.37"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.2",
+    "vite": "^5.4.1"
+  }
+}

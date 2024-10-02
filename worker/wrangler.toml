@@ -1,0 +1,15 @@
+name = "prompt-api-worker"
+main = "src/worker.js"
+compatibility_date = "2024-06-20"
+node_compat = true
+
+[dev]
+port = 8998
+
+[vars]
+OPENAI_BASEURL="https://api.openai.com/v1/chat/completions"
+
+
+[[kv_namespaces]]
+binding = "prompt_api_kv"
+id = "c80a6182c2c643699cd2cc22c0c8d129"
