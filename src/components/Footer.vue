@@ -11,12 +11,12 @@
 export default {
     methods: {
         forgetOpenAIKey() {
-            localStorage.removeItem('prompt_api:openai_apikey')
+            localStorage.removeItem('prompt2api:openai_apikey')
         }
     },
     data() {
         return {
-            key: localStorage.getItem('prompt_api:openai_apikey') ? true : false
+            key: localStorage.getItem('prompt2api:openai_apikey') ? true : false
         }
     }
 }

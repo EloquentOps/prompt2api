@@ -25,7 +25,7 @@ export default {
     Main
   },
   mounted() {
-    this.hasKey = localStorage.getItem('prompt_api:openai_apikey') ? true : false
+    this.hasKey = localStorage.getItem('prompt2api:openai_apikey') ? true : false
   },
   data() {
     return {

@@ -18,7 +18,7 @@ export default {
     },
     methods: {
         saveOpenAIKey() {
-            localStorage.setItem('prompt_api:openai_apikey', this.temp_apikey)
+            localStorage.setItem('prompt2api:openai_apikey', this.temp_apikey)
             this.$emit('updated')
         }
     }
