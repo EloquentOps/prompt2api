@@ -1,0 +1,139 @@
+<template>
+    
+  <div class="container">
+
+        <div class="col">
+            <textarea v-model="prompt" placeholder="i.e. list 10 e-commerce products"></textarea>
+
+            <div class="actions">
+                <button :disabled="loading === 'generate'" @click="generate">{{ loading === 'generate' ? 'Generating...' : 'Generate' }}</button>
+            </div>
+        </div>
+
+
+        <div class="col">
+
+        <div class="inner">
+            <Editor 
+                theme='vs-light'
+                :options="{
+                    lineNumbers:true, 
+                    minimap:{enabled:false}, 
+                    showFoldingControls:false, 
+                    quickSuggestions:false, 
+                    scrollbar:{vertical:'hidden'},
+                    overviewRulerBorder:false,
+                    overviewRulerLanes:0,
+                    hideCursorInOverviewRuler:true,
+                    acceptSuggestionOnCommitCharacter:false, 
+                    padding:0,
+                    readOnly:true
+                }"
+                :value="output"
+                defaultLanguage="json"
+            />
+        </div>
+
+        <div class="actions">
+            <span v-if="key"><a target="_blank" :href="`${base}/u/${key}`">Public URL</a></span>
+            <button :disabled="loading === 'publish' || !output || key" class="alt" @click="publish">{{ loading === 'publish' ? 'Publishing...' : 'Publish' }}</button>
+        </div>
+
+            
+        </div>
+        </div>
+</template>
+
+<script>
+import axios from 'axios'
+import Editor from '@guolao/vue-monaco-editor'
+
+export default {
+    components: {
+        Editor
+    },
+    data() {
+        return {
+            prompt: '',
+            output: '',
+            key: '',
+            compact: '',
+            key: '',
+            editor: null,
+            base: import.meta.env.VITE_APP_WORKER_APP_BASE_URL,
+            loading: ''
+        }
+    },  
+    mounted() {
+        const key = localStorage.getItem('prompt_api:openai_apikey') || ''
+        axios.defaults.headers.common['Authorization'] = key
+    },
+    methods: {
+        async generate() {
+            this.loading = 'generate'
+            const response = await axios.post(this.base + '/generate', 
+                {
+                question: this.prompt
+                }
+            )
+            const out = response.data
+
+            const { result, question, total_tokens } = out || {}
+
+            this.compact = out
+            
+            this.output = JSON.stringify(result, null, 2)
+            this.key = null
+            this.loading = ''
+        },
+        async publish() {
+            this.loading = 'publish'
+            const response = await axios.post(this.base + '/publish', 
+                {
+                output: this.compact
+                }
+            )
+            this.key = response.data.key
+            this.loading = ''
+        },
+    }
+}
+</script>
+
+
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  height: 100%;
+  width: 100%;
+}
+
+
+.col {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: .25rem;
+}
+
+.actions{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem; 
+    margin-top: .5rem;
+}
+.inner{
+    overflow: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+</style>

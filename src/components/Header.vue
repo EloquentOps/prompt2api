@@ -1,6 +1,6 @@
 <template>
     <header>
-        <p>Prompt2API</p>
+        <p><b>Prompt2API</b> - Publish API responses generated from AI</p>
     </header>
 </template>
 
