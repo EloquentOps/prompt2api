@@ -3,7 +3,7 @@
         <b>Prompt2API</b>
          by <a href="https://eloquentops.com">EloquentOps</a>
          - <a href="https://github.com/eloquentops/prompt2api">GitHub</a>
-         - <a href="" @click="forgetOpenAIKey">Forget my OpenAI API KEY</a>
+         - <a v-if="key" href="" @click="forgetOpenAIKey">Forget my OpenAI API KEY</a>
     </footer>
 </template>
 
@@ -12,6 +12,11 @@ export default {
     methods: {
         forgetOpenAIKey() {
             localStorage.removeItem('prompt_api:openai_apikey')
+        }
+    },
+    data() {
+        return {
+            key: localStorage.getItem('prompt_api:openai_apikey') ? true : false
         }
     }
 }

@@ -1,8 +1,9 @@
 <template>
     <div class="modal">
         <h2>Prompt2API</h2>
-        <p>Put your <b>OpenAI API key</b> (it's stored on localStorage)<br />
-        It uses <b>GPT-4o-mini</b>, so just pennies.</p>
+        <h4>The fastest way to create synthetic (mock) data for your apps.</h4>
+        <p>Put your <b>OpenAI API key</b> (it'll be stored on localStorage)<br />
+        It uses <b>GPT-4o-mini</b>, so it's just pennies.</p>
         <input type="text" v-model="temp_apikey" placeholder="sk-proj-..." />
         <button @click="saveOpenAIKey">Save</button>
     </div>
@@ -32,6 +33,15 @@ export default {
     justify-content: center;
     width: 100%;
     height: 100%;
+}
+
+h2{
+    margin: 0;
+}
+
+h4{
+    margin: 0;
+    margin-bottom: 1rem;
 }
 
 input{

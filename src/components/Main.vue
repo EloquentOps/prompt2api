@@ -3,7 +3,7 @@
   <div class="container">
 
         <div class="col">
-            <textarea v-model="prompt" placeholder="i.e. list 10 e-commerce products"></textarea>
+            <textarea v-model="prompt" placeholder="i.e. 'list 10 e-commerce products' or 'an array with 5 object {a:Random(1,10), b:Some Person Name, c:age(10,80)}'"></textarea>
 
             <div class="actions">
                 <button :disabled="loading === 'generate'" @click="generate">{{ loading === 'generate' ? 'Generating...' : 'Generate' }}</button>
