@@ -3,7 +3,7 @@
         <b>Prompt2API</b>
          by <a href="https://eloquentops.com">EloquentOps</a>
          - <a href="https://github.com/eloquentops/prompt2api">GitHub</a>
-         - <a href="" @click="forgetOpenAIKey">Forget OpenAI API KEY</a>
+         - <a href="" @click="forgetOpenAIKey">Forget my OpenAI API KEY</a>
     </footer>
 </template>
 
