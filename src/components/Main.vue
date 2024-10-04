@@ -128,7 +128,7 @@ export default {
 .container {
   display: flex;
   justify-content: center;
-  padding: 2rem;
+  padding: 1rem;
   height: 100%;
   width: 100%;
 }
@@ -163,7 +163,7 @@ export default {
 
 @media (max-width: 568px) {
     .container {
-        padding: .5rem;
+        padding: .3rem;
         flex-direction: column;
     }
 }
