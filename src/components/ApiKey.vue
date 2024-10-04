@@ -62,6 +62,9 @@ h4{
     align-items: center;
     justify-content: center;
     gap: 10px;
+    padding: .5rem;
+    width: 100%;
+    max-width: 600px;
 }
 
 .form-container input{
@@ -76,6 +79,6 @@ video{
 }
 
 input{
-    min-width: 300px;
+    flex: 1;
 }
 </style>
