@@ -2,6 +2,7 @@
     <footer>
         <b>Prompt2Api</b>
          by <a href="https://eloquentops.com">EloquentOps</a>
+         - <a href="https://eloquentops.com/blog/introducing-prompt2api-our-free-tool-to-generate-and-publish-syntetic-mock-data-api/">Read more</a>
          - <a href="https://github.com/eloquentops/prompt2api">GitHub</a>
          - <a v-if="key" href="" @click="forgetOpenAIKey">Forget my OpenAI API KEY</a>
     </footer>

@@ -139,6 +139,7 @@ export default {
   width: 100%;
   flex-direction: column;
   padding: .25rem;
+  flex: 1;
 }
 
 .actions{
@@ -159,4 +160,11 @@ export default {
     flex-direction: column;
 }
 
+
+@media (max-width: 568px) {
+    .container {
+        padding: .5rem;
+        flex-direction: column;
+    }
+}
 </style>

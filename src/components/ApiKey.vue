@@ -6,12 +6,13 @@
         <div class="vid-container">
             <video src="/demo.mp4" autoplay loop muted></video>
         </div>
+
         <p>Put your <b>OpenAI API key</b> (it'll be stored on localStorage)<br />
         It uses <b>GPT-4o-mini</b>, so it's just pennies.</p>
         
         <div class="form-container">
             <input type="text" v-model="temp_apikey" placeholder="sk-proj-..." />
-            <button @click="saveOpenAIKey">Save</button>
+            <button :disabled="!temp_apikey" @click="saveOpenAIKey">Save</button>
         </div>
     </div>
 </template>
@@ -80,5 +81,11 @@ video{
 
 input{
     flex: 1;
+}
+
+@media (max-width: 568px) {
+    p{
+        font-size: .8rem;
+    }
 }
 </style>
