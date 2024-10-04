@@ -12,6 +12,8 @@ or
 array with object {a:Random(1,10), b:Some Person Name, c:age(10,80)}"></textarea>
 
             <div class="actions">
+                <span v-if="tokens">{{ tokens }} tokens consumed</span>
+                <span class="error" v-if="error">Error: {{ error }}</span>
                 <button :disabled="loading === 'generate'" @click="generate">{{ loading === 'generate' ? 'Generating...' : 'Generate' }}</button>
             </div>
         </div>
@@ -67,7 +69,9 @@ export default {
             key: '',
             editor: null,
             base: import.meta.env.VITE_APP_WORKER_APP_BASE_URL,
-            loading: ''
+            loading: '',
+            tokens: 0,
+            error: ''
         }
     },  
     mounted() {
@@ -77,26 +81,39 @@ export default {
     methods: {
         async generate() {
             this.loading = 'generate'
-            const response = await axios.post(this.base + '/generate', 
-                {
-                question: this.prompt
+            this.error = ''
+            this.tokens = 0
+            try {
+                const response = await axios.post(this.base + '/generate', 
+                    {
+                        question: this.prompt
+                    }
+                )
+                const out = response.data
+                
+                if(typeof out === 'string'){
+                    this.error = 'Error: Invalid JSON output'
+                    this.loading = ''
+                    return
                 }
-            )
-            const out = response.data
 
-            const { result, question, total_tokens } = out || {}
+                const { result, question, total_tokens } = out || {}
 
-            this.compact = out
-            
-            this.output = JSON.stringify(result, null, 2)
-            this.key = null
+                this.compact = out
+                this.tokens = total_tokens
+
+                this.output = JSON.stringify(result, null, 2)
+                this.key = null
+            } catch (error) {
+                this.error = error.message
+            }
             this.loading = ''
         },
         async publish() {
             this.loading = 'publish'
             const response = await axios.post(this.base + '/publish', 
                 {
-                output: this.compact
+                    output: this.compact
                 }
             )
             this.key = response.data.key
