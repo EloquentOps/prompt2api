@@ -1,6 +1,6 @@
 <template>
     <div class="modal">
-        <h2>Prompt2API</h2>
+        <h2>Prompt2Api</h2>
         <h4>The fastest way to create synthetic (mock) data for your apps.</h4>
 
         <div class="vid-container">

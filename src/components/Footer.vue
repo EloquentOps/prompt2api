@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <b>Prompt2API</b>
+        <b>Prompt2Api</b>
          by <a href="https://eloquentops.com">EloquentOps</a>
          - <a href="https://github.com/eloquentops/prompt2api">GitHub</a>
          - <a v-if="key" href="" @click="forgetOpenAIKey">Forget my OpenAI API KEY</a>
